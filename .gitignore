@@ -1,0 +1,8 @@
+.claude
+
+# Traces a student's own run writes next to the notebooks (rewritten on every run).
+# The reference traces in references/traces/ ARE committed.
+notebooks/traces/
+
+.ipynb_checkpoints/
+__pycache__/

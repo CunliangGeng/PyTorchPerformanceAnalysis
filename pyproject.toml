@@ -1,0 +1,20 @@
+[project]
+name = "lecture"
+version = "0.1.0"
+authors = [
+    { name = "Cunliang Geng", email = "c.geng@esciencecenter.nl" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "numpy>=2.5.2",
+    "torch>=2.13.0",
+]
+
+[dependency-groups]
+dev = [
+    "jupyterlab>=4.6.3",
+    "ipykernel>=7.3.0",
+    "jupytext>=1.19.5",
+    "nbconvert>=7.17.1",
+    "nbformat>=5.11.1",
+]
