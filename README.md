@@ -4,8 +4,8 @@ Hands-on notebooks to learn how to measure, profile, diagnose, and optimize AI m
 
 | Notebook | What it covers |
 |---|---|
-| `ep1` | Timing one GPU operation correctly, and reading its profile as a timeline and as a table |
-| `ep2` | Analyse a whole training loop: measure, profile, diagnose, optimise, verify, then next iteration |
+| [ep1.ipynb](./notebooks/ep1.ipynb)| Timing one GPU operation correctly, and reading its profile as a timeline and as a table |
+| [ep2.ipynb](./notebooks/ep2.ipynb) | Analyse a whole training loop: measure, profile, diagnose, optimise, verify, then next iteration |
 
 
 ## For students
