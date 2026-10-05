@@ -21,7 +21,11 @@ Hands-on notebooks to learn how to measure, profile, diagnose, and optimize AI m
 
 ```bash
 uv sync
-uv run jupyter lab   # then open notebooks/ep1.ipynb
+
+# Open notebooks in jupyter lab
+uv run jupyter lab
+
+# or open the notebook in VSCode, requires `python` and `jupyter` plugins
 ```
 
 If a cell fails on your machine, `references/` has both notebooks already executed with

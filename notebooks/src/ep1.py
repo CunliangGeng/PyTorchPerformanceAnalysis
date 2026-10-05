@@ -129,9 +129,13 @@ expect("Naive timer says the matmul took", naive_ms, 0.01, 0.5)
 # %% [markdown]
 # ### Timing the same matmul, timed correctly
 #
-# This cell warmups the GPU by running the matmul a few times before timing it. This is important because the first time you run a GPU operation, there may be additional overhead for initializing the GPU context and loading kernels.
+# This cell **warmups** the GPU by running the matmul a few times before timing it. This is important because the first time you run a GPU operation, there may be additional overhead for initializing the GPU context and loading kernels.
 #
-# More importantly, the naive timer does not account for the fact that GPU operations are asynchronous. When you call `a @ b`, it launches the operation on the GPU and returns immediately, without waiting for the operation to finish. Therefore, when you read the time right after the matmul, it may not have completed yet. To get an accurate measurement, you need to synchronize the CPU and GPU before reading the end time using `torch.cuda.synchronize()`. This ensures that the CPU waits for the GPU to finish all its work before measuring the elapsed time.
+# More importantly, the naive timer does not account for the fact that **GPU execution is asynchronous**. When you call `a @ b`, it launches the operation on the GPU and returns immediately, without waiting for the operation to finish. Therefore, when you read the time right after the matmul, it may not have completed yet. To get an accurate measurement, you need to synchronize the CPU and GPU before reading the end time using `torch.cuda.synchronize()`. This ensures that the CPU waits for the GPU to finish all its work before measuring the elapsed time.
+#
+#
+#
+# ![GPU operations are asynchronous](https://docs.nvidia.com/cuda/cuda-programming-guide/_images/cuda_streams.png)
 
 # %%
 # warm up first

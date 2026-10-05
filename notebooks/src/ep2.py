@@ -116,7 +116,7 @@ else:
 # %% [markdown]
 # ### The model
 #
-# The model predicts a binding affinity, one number, from an encoded peptide-MHC pair:
+# The model predicts a binding affinity, one number, from an encoded [peptide-MHC (Major Histocompatibility Complex) pair](https://www.cell.com/cms/10.1016/j.crmeth.2026.101364/asset/ca489611-3141-47e1-af51-9f63e7eb2276/main.assets/gr1_lrg.jpg):
 # a vector of 860 numbers. A `Linear` layer widens it to 2048 features, eight
 # `AffinityBlock`s follow, and a final `Linear` layer gives the output. About 35M
 # parameters. Each block is one `Linear` layer and a chain of cheap elementwise
@@ -654,6 +654,33 @@ print(f"## 5-metrics ## after the loader fix:  {stage_time_r1['## 5-metrics ##']
 # #### The most a fix to the metric can buy
 #
 # The ceiling again, measured the same way: the same loop, with the metric stage taken out.
+#
+#
+# The original `train_step` function:
+#
+# ```python
+# def train_step(xb, yb):
+#     """One training step on the batch (xb, yb). Returns the loss and a metric."""
+#     with record_function("## 1-forward ##"):
+#         pred = model(xb)
+#     with record_function("## 2-loss ##"):
+#         loss = F.mse_loss(pred, yb)
+#     with record_function("## 3-backward ##"):
+#         loss.backward()
+#     with record_function("## 4-optimizer ##"):
+#         opt.step()
+#         opt.zero_grad(set_to_none=True)
+#     with record_function("## 5-metrics ##"):
+#         # Calculate the RMSE for each sample in the batch
+#         per_sample = []
+#         for i in range(len(pred)):
+#             per_sample.append(F.mse_loss(pred[i], yb[i]))
+#         batch_rmse = torch.stack(per_sample).mean().sqrt().item()
+#         # Get the loss value as a Python float (not a tensor)
+#         loss_value = loss.item()
+#     return loss_value, batch_rmse
+#
+# ```
 
 # %%
 def train_step_no_metric(xb, yb):
@@ -674,8 +701,8 @@ def train_step_no_metric(xb, yb):
 step_time_ideal_r2 = time_step(num_workers=NUM_WORKERS, step_fn=train_step_no_metric)
 speedup_cap_r2 = step_time_r1 / step_time_ideal_r2
 
-print(f"With no metric stage at all the loop would be {step_time_ideal_r2:.2f} ms/step, against")
-print(f"{step_time_r1:.2f} ms/step now. So no fix to the metric can beat {speedup_cap_r2:.2f}x,")
+print(f"With no metric stage, the loop would be {step_time_ideal_r2:.2f} ms/step, against")
+print(f"{step_time_r1:.2f} ms/step now. So a fix to the metric can buy at most {speedup_cap_r2:.2f}x,")
 print("and that is what VERIFY checks against.")
 
 # %% [markdown]
@@ -1105,3 +1132,9 @@ print(f"On a 2,000,000-sample dataset, one epoch went from "
 # 4. **Does one stage own most of the time?** Then it is the only stage worth touching, and
 #    its share caps what a fix can buy.
 # 5. **Did ms/step actually change after the fix?**  Measure again, or you do not know.
+
+# %% [markdown]
+# ## Useful materials
+#
+# - [Finding the Bottleneck in PyTorch Training - No guesswork: measure first, optimise second](https://doi.org/10.5281/zenodo.20272317)
+# - [HolisticTraceAnalysis: a library to analyze PyTorch traces](https://github.com/facebookresearch/HolisticTraceAnalysis)
