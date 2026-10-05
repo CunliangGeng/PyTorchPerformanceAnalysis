@@ -7,7 +7,7 @@ Hands-on notebooks to learn how to measure, profile, diagnose, and optimize AI m
 | [ep1.ipynb](./notebooks/ep1.ipynb)| Timing one GPU operation correctly, and reading its profile as a timeline and as a table |
 | [ep2.ipynb](./notebooks/ep2.ipynb) | Analyse a whole training loop: measure, profile, diagnose, optimise, verify, then next iteration |
 
-The lecture slides are avilable in the [slides](./slides/) folder.
+The lecture slides are available in the [slides](./slides/) folder.
 
 ## For students
 
@@ -41,6 +41,7 @@ their outputs and [traces](./references/traces/) kept, so you can keep following
 | `notebooks/*.ipynb` | What students open. Generated, and shipped with no outputs |
 | `references/` | Both notebooks executed on the reference GPU, with outputs and traces kept |
 | `build.py`, `sync.py`, `verify.py` | Build, sync back, check. Run each with `--help` |
+| `slides` | Slides for the lesson |
 
 ### Before class
 
