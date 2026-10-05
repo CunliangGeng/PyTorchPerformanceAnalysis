@@ -7,6 +7,7 @@ Hands-on notebooks to learn how to measure, profile, diagnose, and optimize AI m
 | [ep1.ipynb](./notebooks/ep1.ipynb)| Timing one GPU operation correctly, and reading its profile as a timeline and as a table |
 | [ep2.ipynb](./notebooks/ep2.ipynb) | Analyse a whole training loop: measure, profile, diagnose, optimise, verify, then next iteration |
 
+The lecture slides are avilable in the [slides](./slides/) folder.
 
 ## For students
 
@@ -25,11 +26,11 @@ uv sync
 # Open notebooks in jupyter lab
 uv run jupyter lab
 
-# or open the notebook in VSCode, requires `python` and `jupyter` plugins
+# or open notebooks in VSCode, requiring `python` and `jupyter` plugins
 ```
 
-If a cell fails on your machine, `references/` has both notebooks already executed with
-their outputs and traces kept, so you can keep following along.
+If a cell fails on your machine, the [references](./references/) folder has both notebooks already executed with
+their outputs and [traces](./references/traces/) kept, so you can keep following along.
 
 
 ## For instructors
