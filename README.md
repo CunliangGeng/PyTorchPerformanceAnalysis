@@ -2,10 +2,10 @@
 
 Hands-on notebooks to learn how to measure, profile, diagnose, and optimize AI models using PyTorch.
 
-| Notebook | What it covers |
-|---|---|
-| [ep1.ipynb](./notebooks/ep1.ipynb)| Timing one GPU operation correctly, and reading its profile as a timeline and as a table |
-| [ep2.ipynb](./notebooks/ep2.ipynb) | Analyse a whole training loop: measure, profile, diagnose, optimise, verify, then next iteration |
+| Notebook | What it covers | Estimated time |
+|---|---|---|
+| [ep1.ipynb](./notebooks/ep1.ipynb)| Timing one GPU operation correctly, and reading its profile as a timeline and as a table | 1 hour |
+| [ep2.ipynb](./notebooks/ep2.ipynb) | Analyse a whole training loop: measure, profile, diagnose, optimise, verify, then next iteration | 2-3 hours |
 
 The lecture slides are available in the [slides](./slides/) folder.
 
